@@ -9,7 +9,7 @@ external_auth:
         - .*
         - '@runner'
         - '@wheel'
-		- '@jobs'
+        - '@jobs'
 
 halite:
   level: 'debug'

@@ -3,9 +3,7 @@ FROM ubuntu:14.04
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 
-#Runit
-RUN apt-get install -y runit 
-CMD /usr/sbin/runsvdir-start
+
 
 #SSHD
 RUN apt-get install -y openssh-server && \
@@ -13,6 +11,10 @@ RUN apt-get install -y openssh-server && \
     echo 'root:root' |chpasswd
 RUN sed -i "s/session.*required.*pam_loginuid.so/#session    required     pam_loginuid.so/" /etc/pam.d/sshd
 RUN sed -i "s/PermitRootLogin without-password/#PermitRootLogin without-password/" /etc/ssh/sshd_config
+
+#Runit
+RUN apt-get install -y runit 
+CMD /usr/sbin/runsvdir-start
 
 #Utilities
 RUN apt-get install -y vim less net-tools inetutils-ping curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common
@@ -25,10 +27,6 @@ RUN echo 'deb http://ppa.launchpad.net/saltstack/salt/ubuntu precise main' > /et
 #Salt
 RUN apt-get install -y salt-master salt-minion salt-syndic salt-ssh
 
-
-#Docker client only
-RUN wget -O /usr/local/bin/docker https://get.docker.io/builds/Linux/x86_64/docker-latest && \
-    chmod +x /usr/local/bin/docker
 
 
 #Preseed local master-minion
