@@ -1,7 +1,7 @@
 #master_ip: 10.0.2.5
-publish_port: 40505
+publish_port: 30505
 keysize: 2048
-ret_port: 40506
+ret_port: 30506
 
 external_auth:
   pam:

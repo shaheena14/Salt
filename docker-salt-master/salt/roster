@@ -1,7 +1,7 @@
 #Add new host here to bootstrap using salt-ssh
 managed:
-    host: 18.222.199.97  
-    user: ubuntu
-    sudo: True
-    priv: /home/ubuntu/.ssh/id_rsa
+    host: 40.117.198.2 
+#    user: salt
+#    sudo: True
+#    priv: /home/salt/.ssh/
 # make sure /etc/sudoer configure this user/group with NOPASSWD:

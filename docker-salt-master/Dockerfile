@@ -13,16 +13,16 @@ RUN sed -i "s/session.*required.*pam_loginuid.so/#session    required     pam_lo
 RUN sed -i "s/PermitRootLogin without-password/#PermitRootLogin without-password/" /etc/ssh/sshd_config
 
 #Runit
-RUN apt-get install -y runit 
-CMD /usr/sbin/runsvdir-start
+RUN apt-get install -y runit-systemd 
+
 
 #Utilities
 RUN apt-get install -y vim less net-tools inetutils-ping curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common
-
+RUN apt-get install apt-utils
 #Salt Repo
-RUN echo 'deb http://ppa.launchpad.net/saltstack/salt/ubuntu precise main' > /etc/apt/sources.list.d/saltstack.list && \
-    wget -q -O- "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x4759FA960E27C0A6" | apt-key add - && \
-    apt-get update
+RUN wget -O - "http://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest/SALTSTACK-GPG-KEY.pub" | sudo apt-key add - 
+RUN echo "deb http://repo.saltstack.com/apt/ubuntu/18.04/amd64/latest bionic main" | sudo tee /etc/apt/sources.list.d/saltstack.list
+RUN  apt-get update
 
 #Salt
 RUN apt-get install -y salt-master salt-minion salt-syndic salt-ssh salt-cloud
@@ -60,5 +60,5 @@ ADD sv /etc/service
 
 ENV HOME /root
 WORKDIR /root
-EXPOSE 22 4506 8000
+EXPOSE 22 3506 8000
 
