@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:18.04
  
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
@@ -25,7 +25,7 @@ RUN echo 'deb http://ppa.launchpad.net/saltstack/salt/ubuntu precise main' > /et
     apt-get update
 
 #Salt
-RUN apt-get install -y salt-master salt-minion salt-syndic salt-ssh
+RUN apt-get install -y salt-master salt-minion salt-syndic salt-ssh salt-cloud
 
 
 
@@ -60,5 +60,5 @@ ADD sv /etc/service
 
 ENV HOME /root
 WORKDIR /root
-EXPOSE 22 3506 8000
+EXPOSE 22 4506 8000
 
