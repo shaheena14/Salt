@@ -1,5 +1,5 @@
 master: localhost
-master_port: 30506
+master_port: 40506
 id: master-minion
 
 state_verbose: True
