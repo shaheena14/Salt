@@ -1,1 +1,1 @@
-docker run -d -v `pwd`/salt:/etc/salt -v `pwd`/srv:/srv -p 30505:30505 -p 30506:30506 -p 49022:22 salt
+docker run -d -v `pwd`/salt:/etc/salt -v `pwd`/srv:/srv -p 40505:40505 -p 40506:40506 -p 49022:22 salt
